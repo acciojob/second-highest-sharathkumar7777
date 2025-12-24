@@ -14,5 +14,6 @@ function secondHighest(arr) {
         }
     }
 
-    return secondMax === -Infinity ? -Infinity : secondMax;
+    return secondMax;
 }
+
