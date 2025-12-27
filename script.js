@@ -1,17 +1,25 @@
 function secondHighest(arr) {
-    if (arr.length < 2) return -Infinity;
+  // Edge cases
+  if (!arr || arr.length < 2) {
+    return -Infinity;
+  }
 
-    let max = -Infinity;
-    let secondMax = -Infinity;
+  let max = -Infinity;
+  let secondMax = -Infinity;
 
-    for (let num of arr) {
-        if (num > max) {
-            secondMax = max;
-            max = num;
-        } else if (num < max && num > secondMax) {
-            secondMax = num;
-        }
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      secondMax = max;
+      max = arr[i];
+    } else if (arr[i] < max && arr[i] > secondMax) {
+      secondMax = arr[i];
     }
+  }
 
-    return secondMax;
+  // If no valid second highest exists
+  if (secondMax === -Infinity) {
+    return -Infinity;
+  }
+
+  return secondMax;
 }
