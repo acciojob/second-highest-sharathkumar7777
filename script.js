@@ -1,30 +1,25 @@
 function secondHighest(arr) {
+  // Edge cases
   if (!Array.isArray(arr) || arr.length < 2) {
     return -Infinity;
   }
 
-  // Remove duplicates
-  const unique = Array.from(new Set(arr));
+  let max = -Infinity;
+  let secondMax = -Infinity;
 
-  if (unique.length < 2) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      secondMax = max;
+      max = arr[i];
+    } else if (arr[i] < max && arr[i] > secondMax) {
+      secondMax = arr[i];
+    }
+  }
+
+  // If no distinct second highest exists
+  if (secondMax === -Infinity) {
     return -Infinity;
   }
 
-  // Find highest
-  let max = -Infinity;
-  for (let i = 0; i < unique.length; i++) {
-    if (unique[i] > max) {
-      max = unique[i];
-    }
-  }
-
-  // Find second highest
-  let second = -Infinity;
-  for (let i = 0; i < unique.length; i++) {
-    if (unique[i] !== max && unique[i] > second) {
-      second = unique[i];
-    }
-  }
-
-  return second;
+  return secondMax;
 }
